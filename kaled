@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بطاقة تهنئة</title>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<style>
+    body {
+        font-family: 'Cairo', sans-serif;
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        overflow: hidden;
+        perspective: 800px;
+    }
+    #card {
+        background: linear-gradient(135deg, #c5e8b7, #a3d9a5);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3), 0 6px 6px rgba(0,0,0,0.2);
+        opacity: 0;
+        transform: rotateX(-60deg) translateY(-30px);
+        transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+        text-align: center;
+        z-index: 10;
+        max-width: 90%;
+        margin: 0 auto;
+        border: 3px solid #ffffff;
+        animation: fadeIn 1.2s forwards, float 4s ease-in-out infinite;
+    }
+    #card.show {
+        opacity: 1;
+        transform: rotateX(0) translateY(0);
+    }
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    @keyframes float {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0); }
+    }
+    #card h1 {
+        font-family: 'Reem Kufi', sans-serif;
+        font-size: 48px;
+        margin-bottom: 20px;
+        color: #1d4d4f;
+        animation: glow 2s infinite alternate, textShadow 2s infinite alternate;
+    }
+    #card p {
+        font-size: 24px;
+        color: #0c2e1d;
+        margin: 10px 0;
+        opacity: 0;
+        animation: fadeInText 3.5s forwards;
+    }
+    #card i {
+        font-size: 50px;
+        color: #1d4d4f;
+        margin-bottom: 20px;
+    }
+    @keyframes glow {
+        from {
+            text-shadow: 0 0 10px #a3d9a5, 0 0 20px #a3d9a5, 0 0 30px #2ecc71, 0 0 40px #2ecc71, 0 0 50px #2ecc71, 0 0 60px #2ecc71, 0 0 70px #2ecc71;
+        }
+        to {
+            text-shadow: 0 0 20px #a3d9a5, 0 0 30px #2ecc71, 0 0 40px #2ecc71, 0 0 50px #2ecc71, 0 0 60px #2ecc71, 0 0 70px #2ecc71, 0 0 80px #2ecc71;
+        }
+    }
+    @keyframes textShadow {
+        0% {
+            text-shadow: 0 0 10px rgba(195, 232, 183, 0.7);
+        }
+        100% {
+            text-shadow: 0 0 20px rgba(195, 232, 183, 0.4);
+        }
+    }
+    @keyframes fadeInText {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    .firework {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        opacity: 0;
+        box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.8);
+        animation: explode 1s ease-out infinite;
+    }
+    @keyframes explode {
+        0% {
+            opacity: 1;
+            transform: scale(0);
+        }
+        100% {
+            opacity: 0;
+            transform: scale(2);
+        }
+    }
+</style>
+</head>
+<body>
+<div id="card">
+    <i class="fas fa-mosque"></i>
+    <h1>عيد مبارك</h1>
+    <p>خالد يتمنى لكم</p>
+    <p>عيدًا مليئًا بالفرح والسرور</p>
+    <p>كل عام وأنتم بخير</p>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() {
+            document.getElementById("card").classList.add("show");
+        }, 2000);
+        createFireworks();
+    });
+    function createFireworks() {
+        const colors = ['#2ecc71', '#27ae60', '#16a085', '#1abc9c'];
+        for (let i = 0; i < 50; i++) {
+            const firework = document.createElement('div');
+            firework.classList.add('firework');
+            firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            firework.style.width = firework.style.height = `${Math.random() * 10 + 5}px`;
+            firework.style.top = `${Math.random() * 100}vh`;
+            firework.style.left = `${Math.random() * 100}vw`;
+            firework.style.animationDelay = `${Math.random() * 3}s`;
+            firework.style.animationDuration = `${Math.random() * 1.5 + 0.5}s`;
+            document.body.appendChild(firework);
+        }
+    }
+</script>
+</body>
+</html>
